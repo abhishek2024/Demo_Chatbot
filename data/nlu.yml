@@ -53,3 +53,11 @@ nlu:
     - don't like that
     - no way
     - not really
+
+- intent: outofscope
+  examples: |
+    - who is us president
+    - what is 2 + 2
+    - who are you
+    - i want to order food
+    - i want to play football
