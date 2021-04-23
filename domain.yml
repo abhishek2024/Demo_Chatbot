@@ -1,84 +1,98 @@
-version: "2.0"
-
-intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-
-responses:
-  utter_greet:
-  - text: "Hey! I am ASCI's bot, Can I help you find a campsite?"
-
-  utter_questions:
-  - text: "To help you find a campsite, I would like to ask some questions first. Do you agree?"
-
-  utter_ask_country:
-  - text: "What country or region do you prefer?"
-
-  utter_ask_campsite:
-  - text: "What type of campsite you are looking for?"
-
-  utter_ask_max_price:
-  - text: "What is the maximum price per night you're willing to pay?"
-
-  utter_ask_location:
-  - text: "What are your location preferences?"
-
-  utter_ask_facilities :
-  - text: "And Last question, what facilities are important to you?"
-
-  utter_recommendation:
-  - text: "Based on your answers we recommend these campsites:"
-
-  utter_recommendation_1:
-  - text: "1. https://www.eurocampings.nl/frankrijk/laag-normandie/manche/fermanville/camping-de-la-plage-122980/"
-
-  utter_recommendation_2:
-  - text: "2. https://www.eurocampings.nl/frankrijk/pays-de-la-loire/vendee/talmont-saint-hilaire/camping-sandaya-le-littoral-100366/"
-
-  utter_recommendation_3:
-  - text: "3. https://www.eurocampings.nl/frankrijk/bretagne/finistere/saint-pol-de-leon/camping-ar-kleguer-103235/"
-
-  utter_helpful:
-  - text: "Did you find these recommendations helpful?"
-
-  utter_goodbye:
-  - text: "Thanks, Bye Have a nice day"
-
-actions:
-  - action_submit
-
-forms:
-  user_details_form:
-    country:
-      - type: from_text
-        entity: country
-    campsite:
-      - type: from_text
-        entity: campsite
-    max_price:
-      - type: from_text
-        entity: max_price
-    location:
-      - type: from_text
-        entity: location
-    facilities:
-      - type: from_text
-        entity: facilities
-
-slots:
-  country:
-    type: text
-  campsite:
-    type: text
-  max_price:
-    type: text
-  location:
-    type: text
-  facilities:
-    type: text
-
+version: '2.0'
+config:
+  store_entities_as_slots: true
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+intents:
+- greet:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+entities: []
+slots:
+  country:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  campsite:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  facilities:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  location:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  period:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  family:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  requested_slot:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+responses:
+  utter_greet:
+  - text: Hey! I am ASCI's bot, Can I help you find a campsite?
+  utter_questions:
+  - text: To help you find a campsite, I would like to ask some questions first. Do you agree?
+  utter_ask_country:
+  - text: What country or region do you prefer?
+  utter_ask_campsite:
+  - text: What type of campsite you are looking for?
+  utter_ask_facilities:
+  - text: what facilities are important to you?
+  utter_ask_location:
+  - text: What are your location preferences?
+  utter_ask_period:
+  - text: Which period do you want to go?
+  utter_ask_family:
+  - text: And Last question, What is your family situation?
+  utter_recommendation:
+  - text: 'Based on your answers we recommend these campsites:'
+  utter_recommendation_1:
+  - text: 1. https://www.eurocampings.nl/frankrijk/laag-normandie/manche/fermanville/camping-de-la-plage-122980/
+  utter_recommendation_2:
+  - text: 2. https://www.eurocampings.nl/frankrijk/pays-de-la-loire/vendee/talmont-saint-hilaire/camping-sandaya-le-littoral-100366/
+  utter_recommendation_3:
+  - text: 3. https://www.eurocampings.nl/frankrijk/bretagne/finistere/saint-pol-de-leon/camping-ar-kleguer-103235/
+  utter_helpful:
+  - text: Did you find these recommendations helpful?
+  utter_goodbye:
+  - text: Thanks, Bye Have a nice day
+actions:
+- action_submit
+forms:
+  user_details_form:
+    campsite:
+    - type: from_text
+    country:
+    - type: from_text
+    facilities:
+    - type: from_text
+    family:
+    - type: from_text
+    location:
+    - type: from_text
+    period:
+    - type: from_text
+e2e_actions: []
